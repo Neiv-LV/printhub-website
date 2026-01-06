@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cài đặt - Printhub Admin</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar admin-sidebar">
+            <div class="navbar-brand" style="justify-content: center; margin-bottom: 3rem;">
+                <span class="logo-print">Print</span><span class="logo-hub">hub</span>
+            </div>
+
+            <div class="sidebar-label">QUẢN LÝ</div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html"><span class="icon">📊</span> Tổng quan</a></li>
+                <li><a href="products.html"><span class="icon">📦</span> Sản phẩm</a></li>
+                <li><a href="orders.html"><span class="icon">🛒</span> Đơn hàng</a></li>
+                <li><a href="posts.html"><span class="icon">📝</span> Viết bài</a></li>
+            </ul>
+
+            <div class="sidebar-label">HỆ THỐNG</div>
+            <ul class="sidebar-menu">
+                <li><a href="reports.html"><span class="icon">📈</span> Báo cáo</a></li>
+                <li><a href="permissions.html"><span class="icon">👥</span> Phân quyền</a></li>
+                <li><a href="settings.html" class="active"><span class="icon">⚙️</span> Cài đặt</a></li>
+            </ul>
+
+            <div class="user-mini-profile">
+                <div class="avatar-sm">A</div>
+                <div class="user-info">
+                    <div class="name">Admin User</div>
+                    <div class="role">Super Admin</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1rem; text-align: center;">
+                <a href="../index.html" class="btn-back">← Về trang chủ</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <header class="dash-header">
+                <div>
+                    <h2 style="margin:0;">Cài đặt hệ thống</h2>
+                    <p style="color:#666; margin:0; font-size:0.9rem;">Cấu hình website và tài khoản</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-primary">Lưu thay đổi</button>
+                </div>
+            </header>
+
+            <div class="grid-2-col">
+                <div class="card-panel">
+                    <div class="section-header">
+                        <h3>Thông tin Website</h3>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display:block; margin-bottom:0.5rem; color:#888;">Tên Website</label>
+                        <input type="text" value="Printhub"
+                            style="width:100%; padding:0.8rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white;">
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display:block; margin-bottom:0.5rem; color:#888;">Email liên hệ</label>
+                        <input type="email" value="contact@printhub.vn"
+                            style="width:100%; padding:0.8rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white;">
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display:block; margin-bottom:0.5rem; color:#888;">Hotline</label>
+                        <input type="text" value="0901234567"
+                            style="width:100%; padding:0.8rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white;">
+                    </div>
+                </div>
+
+                <div class="card-panel">
+                    <div class="section-header">
+                        <h3>Trạng thái & Bảo trì</h3>
+                    </div>
+
+                    <div class="perm-card" style="margin-bottom: 1rem;">
+                        <div>
+                            <div style="font-weight: 600;">Chế độ bảo trì</div>
+                            <div style="font-size: 0.8rem; color: #888;">Chỉ Admin mới có thể truy cập</div>
+                        </div>
+                        <div class="toggle"></div>
+                    </div>
+
+                    <div class="perm-card" style="margin-bottom: 1rem;">
+                        <div>
+                            <div style="font-weight: 600;">Cho phép đăng ký</div>
+                            <div style="font-size: 0.8rem; color: #888;">Người dùng mới có thể tạo tài khoản</div>
+                        </div>
+                        <div class="toggle active"></div>
+                    </div>
+
+                    <div class="perm-card" style="margin-bottom: 1rem;">
+                        <div>
+                            <div style="font-weight: 600;">Gửi email thông báo</div>
+                            <div style="font-size: 0.8rem; color: #888;">Khi có đơn hàng mới</div>
+                        </div>
+                        <div class="toggle active"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/sheet-sync.js?v=3"></script>
+</body>
+
+</html>

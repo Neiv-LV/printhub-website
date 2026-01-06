@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Printhub</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Scoped Admin Styles for specific overrides if needed */
+        body {
+            background-color: #0f0f0f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar admin-sidebar">
+            <div class="navbar-brand" style="justify-content: center; margin-bottom: 3rem;">
+                <span class="logo-print">Print</span><span class="logo-hub">hub</span>
+            </div>
+
+            <div class="sidebar-label">QUẢN LÝ</div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html" class="active"><span class="icon">📊</span> Tổng quan</a></li>
+                <li><a href="products.html"><span class="icon">📦</span> Sản phẩm</a></li>
+                <li><a href="orders.html"><span class="icon">🛒</span> Đơn hàng</a></li>
+                <li><a href="posts.html"><span class="icon">📝</span> Viết bài</a></li>
+            </ul>
+
+            <div class="sidebar-label">HỆ THỐNG</div>
+            <ul class="sidebar-menu">
+                <li><a href="reports.html"><span class="icon">📈</span> Báo cáo</a></li>
+                <li><a href="permissions.html"><span class="icon">👥</span> Phân quyền</a></li>
+                <li><a href="settings.html"><span class="icon">⚙️</span> Cài đặt</a></li>
+            </ul>
+
+            <div class="user-mini-profile">
+                <div class="avatar-sm">A</div>
+                <div class="user-info">
+                    <div class="name">Admin User</div>
+                    <div class="role">Super Admin</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1rem; text-align: center;">
+                <a href="../index.html" class="btn-back">← Về trang chủ</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <header class="dash-header">
+                <div>
+                    <h2 style="margin:0;">Tổng quan</h2>
+                    <p style="color:#666; margin:0; font-size:0.9rem;">Chào mừng trở lại, Admin!</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-secondary" style="font-size:0.9rem; padding: 0.5rem 1rem;">🔔</button>
+                    <button class="btn-primary" style="font-size:0.9rem;">+ Đơn mới</button>
+                </div>
+            </header>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"
+                        style="background-color: rgba(255, 62, 0, 0.1); color: var(--primary-color);">💰</div>
+                    <div class="stat-info">
+                        <div class="label">Doanh thu</div>
+                        <div class="value" id="total-revenue">Loading...</div>
+                        <div class="trend up">Total Revenue</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: rgba(255, 152, 0, 0.1); color: #ff9800;">📦</div>
+                    <div class="stat-info">
+                        <div class="label">Đơn mới</div>
+                        <div class="value" id="total-orders">Loading...</div>
+                        <div class="trend pending">Total Orders</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div>
+                        <div class="stat-title">Khách hàng</div>
+                        <div class="stat-value">1.2k</div>
+                        <div class="trend-up">↑ 3.2%</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💧</div>
+                    <div>
+                        <div class="stat-title">Mực tồn</div>
+                        <div class="stat-value">85L</div>
+                        <div class="trend-down" style="color:#f44336; font-size:0.85rem;">↓ Sắp hết</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2-col">
+                <!-- Recent Orders -->
+                <div class="card-panel">
+                    <div class="section-header">
+                        <h3>Đơn hàng gần đây</h3>
+                        <a href="#" class="link-sm">Xem tất cả</a>
+                    </div>
+                    <div class="table-container no-border">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Mã</th>
+                                    <th>Khách hàng</th>
+                                    <th>Tổng</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#ORD-001</td>
+                                    <td>Local Brand A</td>
+                                    <td>5.5M</td>
+                                    <td><span class="status completed">Hoàn thành</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-002</td>
+                                    <td>Xưởng May B</td>
+                                    <td>2.1M</td>
+                                    <td><span class="status pending">Chờ xử lý</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-003</td>
+                                    <td>Shop C</td>
+                                    <td>0đ</td>
+                                    <td><span class="status cancelled">Hủy</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#ORD-004</td>
+                                    <td>In Lẻ D</td>
+                                    <td>500k</td>
+                                    <td><span class="status completed">Hoàn thành</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Google Sheets -->
+                <div class="card-panel">
+                    <div class="section-header">
+                        <h3>Lợi nhuận (Google Sheets)</h3>
+                        <span class="badge-live">Live Sync</span>
+                    </div>
+                    <div class="sheet-widget">
+                        <div class="sheet-header">
+                            <span class="sheet-icon">📊</span>
+                            <div>
+                                <div class="sheet-name">BaoCaoLoiNhuan_2026.xlsx</div>
+                                <div class="sheet-status">Cập nhật: 2 phút trước</div>
+                            </div>
+                        </div>
+                        <div class="sheet-preview">
+                            <div class="sheet-row header">
+                                <span>Tháng</span>
+                                <span>Doanh thu</span>
+                                <span>Chi phí</span>
+                                <span>Lãi</span>
+                            </div>
+                            <div class="sheet-row">
+                                <span>T1/2026</span>
+                                <span>45.0M</span>
+                                <span>20.0M</span>
+                                <span class="profit">25.0M</span>
+                            </div>
+                            <div class="sheet-row">
+                                <span>T12/2025</span>
+                                <span>98.0M</span>
+                                <span>50.0M</span>
+                                <span class="profit">48.0M</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/sheet-sync.js?v=3"></script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viết bài - Printhub Admin</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar admin-sidebar">
+            <div class="navbar-brand" style="justify-content: center; margin-bottom: 3rem;">
+                <span class="logo-print">Print</span><span class="logo-hub">hub</span>
+            </div>
+
+            <div class="sidebar-label">QUẢN LÝ</div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html"><span class="icon">📊</span> Tổng quan</a></li>
+                <li><a href="products.html"><span class="icon">📦</span> Sản phẩm</a></li>
+                <li><a href="orders.html"><span class="icon">🛒</span> Đơn hàng</a></li>
+                <li><a href="posts.html" class="active"><span class="icon">📝</span> Viết bài</a></li>
+            </ul>
+
+            <div class="sidebar-label">HỆ THỐNG</div>
+            <ul class="sidebar-menu">
+                <li><a href="reports.html"><span class="icon">📈</span> Báo cáo</a></li>
+                <li><a href="permissions.html"><span class="icon">👥</span> Phân quyền</a></li>
+                <li><a href="settings.html"><span class="icon">⚙️</span> Cài đặt</a></li>
+            </ul>
+
+            <div class="user-mini-profile">
+                <div class="avatar-sm">A</div>
+                <div class="user-info">
+                    <div class="name">Admin User</div>
+                    <div class="role">Super Admin</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1rem; text-align: center;">
+                <a href="../index.html" class="btn-back">← Về trang chủ</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <header class="dash-header">
+                <div>
+                    <h2 style="margin:0;">Viết bài mới</h2>
+                    <p style="color:#666; margin:0; font-size:0.9rem;">Chia sẻ kiến thức và tin tức</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-secondary">Lưu nháp</button>
+                    <button class="btn-primary">Đăng bài</button>
+                </div>
+            </header>
+
+            <div class="card-panel">
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display:block; margin-bottom:0.5rem; color:#888;">Tiêu đề bài viết</label>
+                    <input type="text" placeholder="Nhập tiêu đề..."
+                        style="width:100%; padding:0.8rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:1rem;">
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display:block; margin-bottom:0.5rem; color:#888;">Ảnh đại diện</label>
+                    <div
+                        style="border: 2px dashed rgba(255,255,255,0.1); padding: 2rem; text-align: center; border-radius: 8px;">
+                        <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">📷</span>
+                        <p style="color: #666; margin: 0;">Kéo thả ảnh hoặc click để tải lên</p>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display:block; margin-bottom:0.5rem; color:#888;">Nội dung</label>
+                    <textarea placeholder="Nội dung bài viết..."
+                        style="width:100%; height: 300px; padding:0.8rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-family:inherit; resize: vertical;"></textarea>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/sheet-sync.js?v=3"></script>
+</body>
+
+</html>

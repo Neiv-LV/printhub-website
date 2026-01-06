@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài viết - Printhub</title>
+    <link rel="stylesheet" href="styles.css?v=3">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="admin/js/blog-data.js?v=2"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:2px;">
+                    <span class="logo-print">Print</span><span class="logo-hub">hub</span>
+                </a>
+            </div>
+            <ul class="navbar-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="bang-gia.html">Bảng giá</a></li>
+                <li><a href="kho-mau.html">Kho mẫu</a></li>
+                <li><a href="huong-dan-file.html">Hướng dẫn</a></li>
+                <li><a href="cau-hoi.html">Hỏi đáp</a></li>
+                <li><a href="blog.html" class="active" style="color:var(--primary-color)">Blog</a></li>
+                <li><a href="index.html#contact">Liên hệ</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="index.html#contact" class="btn-primary">Liên hệ ngay</a>
+            </div>
+        </nav>
+
+        <main style="padding: 4rem 2rem;">
+            <div class="blog-layout" style="display: flex; gap: 4rem; max-width: 1200px; margin: 0 auto;">
+
+                <!-- Article Content -->
+                <article style="flex: 3; max-width: 800px;">
+                    <a href="blog.html"
+                        style="color: #888; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem;">&larr;
+                        Quay lại Blog</a>
+
+                    <header id="article-header">
+                        <span id="article-category"
+                            style="color: var(--primary-color); font-weight: bold; text-transform: uppercase; font-size: 0.9rem;">Category</span>
+                        <h1 id="article-title" style="font-size: 2.5rem; margin: 0.5rem 0 1rem; line-height: 1.2;">
+                            Loading...</h1>
+                        <span id="article-date" style="color: #888;">...</span>
+                    </header>
+
+                    <div id="article-banner"
+                        style="width: 100%; height: 400px; background-color: #222; margin: 2rem 0; border-radius: 12px; background-size: cover; background-position: center;">
+                    </div>
+
+                    <div id="article-body" class="article-body">
+                        <!-- Content will be injected here -->
+                    </div>
+
+                    <!-- Related Posts (Simple) -->
+                    <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                        <h3>Bài viết liên quan</h3>
+                        <div id="related-posts"
+                            style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1.5rem;">
+                            <!-- JS will fill this -->
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Sidebar (Reused) -->
+                <aside style="flex: 1; min-width: 300px;">
+                    <div style="position: sticky; top: 2rem;">
+                        <div class="sidebar-widget"
+                            style="background: var(--card-bg); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 2rem;">
+                            <h4 class="widget-title"
+                                style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem; margin-bottom: 1.5rem; font-size: 1.2rem;">
+                                Chuyên mục</h4>
+                            <ul class="cat-list" style="list-style: none; padding: 0;">
+                                <li style="margin-bottom: 1rem;"><a href="#"
+                                        style="color: #ccc; text-decoration: none; display: flex; justify-content: space-between;">Kiến
+                                        thức in ấn <span
+                                            style="background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 10px; font-size: 0.8rem;">12</span></a>
+                                </li>
+                                <li style="margin-bottom: 1rem;"><a href="#"
+                                        style="color: #ccc; text-decoration: none; display: flex; justify-content: space-between;">Kinh
+                                        doanh Local Brand <span
+                                            style="background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 10px; font-size: 0.8rem;">8</span></a>
+                                </li>
+                                <li style="margin-bottom: 1rem;"><a href="#"
+                                        style="color: #ccc; text-decoration: none; display: flex; justify-content: space-between;">Xu
+                                        hướng thiết kế <span
+                                            style="background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 10px; font-size: 0.8rem;">5</span></a>
+                                </li>
+                                <li style="margin-bottom: 0;"><a href="#"
+                                        style="color: #ccc; text-decoration: none; display: flex; justify-content: space-between;">Tin
+                                        tức Printhub <span
+                                            style="background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 10px; font-size: 0.8rem;">3</span></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-widget"
+                            style="background: linear-gradient(135deg, #ff3e00 0%, #ff8f00 100%); padding: 2rem; border-radius: 12px; color: white; margin-bottom: 2rem;">
+                            <h4 class="widget-title" style="font-size: 1.5rem; margin-bottom: 1rem;">Đăng ký nhận tin
+                            </h4>
+                            <p style="font-size: 0.95rem; margin-bottom: 1.5rem; opacity: 0.9;">Nhận các bài viết mới
+                                nhất
+                                về kỹ thuật in ấn và mã giảm giá độc quyền qua email.</p>
+                            <input type="email" placeholder="Email của bạn..."
+                                style="width: 100%; padding: 1rem; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; color: white; margin-bottom: 1rem; outline: none;">
+                            <button
+                                style="width: 100%; padding: 1rem; background: white; color: var(--primary-color); border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Đăng
+                                ký ngay</button>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <!-- Brand & Contact -->
+                <div class="footer-col">
+                    <div class="navbar-brand" style="margin-bottom: 1rem;">
+                        <span class="logo-print">Print</span><span class="logo-hub">hub</span>
+                    </div>
+                    <p>Đối tác in ấn tin cậy của hơn 500+ Local Brand tại Việt Nam. Cam kết chất lượng và tiến độ hàng
+                        đầu.</p>
+                    <p>
+                        <strong style="color:white">Hotline:</strong> 0906.688.013<br>
+                        <strong style="color:white">Email:</strong> contact@printhub.vn<br>
+                        <strong style="color:white">Địa chỉ:</strong> 123 Nguyễn Văn Cừ, Q.5, TP.HCM
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-col">
+                    <h4>Liên kết nhanh</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="bang-gia.html">Bảng giá in ấn</a></li>
+                        <li><a href="huong-dan-file.html">Hướng dẫn xuất file</a></li>
+                        <li><a href="cau-hoi.html">Câu hỏi thường gặp</a></li>
+                        <li><a href="blog.html">Blog chia sẻ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="footer-col">
+                    <h4>Sản phẩm & Dịch vụ</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#services">In PET Chuyển Nhiệt</a></li>
+                        <li><a href="product-detail.html?id=1">Mực in PET Premium</a></li>
+                        <li><a href="product-detail.html?id=2">Màng PET Hot Peel</a></li>
+                        <li><a href="product-detail.html?id=3">Bột PET Tản Nhiệt</a></li>
+                        <li><a href="index.html#services">Setup xưởng in trọn gói</a></li>
+                    </ul>
+                </div>
+
+                <!-- Connect -->
+                <div class="footer-col">
+                    <h4>Kết nối với Printhub</h4>
+                    <p>Theo dõi chúng tôi để cập nhật các xu hướng in ấn mới nhất cho Local Brand.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="https://zalo.me/84906688013" class="social-link">Zalo</a>
+                        <a href="#" class="social-link">TikTok</a>
+                    </div>
+                    <!-- Newsletter -->
+                    <div style="margin-top: 1.5rem;">
+                        <input type="email" placeholder="Email của bạn..."
+                            style="width: 100%; padding: 0.8rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: white; margin-bottom: 0.5rem; outline: none;">
+                        <button class="btn-primary" style="width: 100%; padding: 0.6rem; font-size: 0.9rem;">Nhận tin
+                            khuyến mãi</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Printhub. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = parseInt(urlParams.get('id')); // Get ID from URL
+
+            // Find post in global variable
+            const post = window.blogPosts ? window.blogPosts.find(p => p.id === postId) : null;
+
+            if (post) {
+                document.title = `${post.title} - Printhub Blog`;
+                document.getElementById('article-category').textContent = post.category;
+                document.getElementById('article-title').textContent = post.title;
+                document.getElementById('article-date').textContent = post.date;
+                document.getElementById('article-banner').style.backgroundImage = `url('${post.image}')`;
+                document.getElementById('article-body').innerHTML = post.content;
+
+                // Simple "Related" logic: take first 2 other posts
+                const related = window.blogPosts.filter(p => p.id !== postId).slice(0, 2);
+                document.getElementById('related-posts').innerHTML = related.map(p => `
+                    <div style="background: var(--card-bg); padding: 1rem; border-radius: 8px; cursor: pointer;" onclick="window.location.href='blog-detail.html?id=${p.id}'">
+                        <h4 style="margin: 0 0 0.5rem; font-size: 1rem;">${p.title}</h4>
+                        <span style="font-size: 0.8rem; color: #888;">${p.date}</span>
+                    </div>
+                `).join('');
+
+            } else {
+                document.getElementById('article-title').textContent = "Bài viết không tồn tại";
+                document.getElementById('article-body').innerHTML = "<p>Rất tiếc, chúng tôi không tìm thấy bài viết bạn yêu cầu. Vui lòng quay lại trang chủ Blog.</p>";
+            }
+        });
+    </script>
+</body>
+
+</html>

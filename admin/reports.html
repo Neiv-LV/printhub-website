@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo - Printhub Admin</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar admin-sidebar">
+            <div class="navbar-brand" style="justify-content: center; margin-bottom: 3rem;">
+                <span class="logo-print">Print</span><span class="logo-hub">hub</span>
+            </div>
+
+            <div class="sidebar-label">QUẢN LÝ</div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html"><span class="icon">📊</span> Tổng quan</a></li>
+                <li><a href="products.html"><span class="icon">📦</span> Sản phẩm</a></li>
+                <li><a href="orders.html"><span class="icon">🛒</span> Đơn hàng</a></li>
+                <li><a href="posts.html"><span class="icon">📝</span> Viết bài</a></li>
+            </ul>
+
+            <div class="sidebar-label">HỆ THỐNG</div>
+            <ul class="sidebar-menu">
+                <li><a href="reports.html" class="active"><span class="icon">📈</span> Báo cáo</a></li>
+                <li><a href="permissions.html"><span class="icon">👥</span> Phân quyền</a></li>
+                <li><a href="settings.html"><span class="icon">⚙️</span> Cài đặt</a></li>
+            </ul>
+
+            <div class="user-mini-profile">
+                <div class="avatar-sm">A</div>
+                <div class="user-info">
+                    <div class="name">Admin User</div>
+                    <div class="role">Super Admin</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1rem; text-align: center;">
+                <a href="../index.html" class="btn-back">← Về trang chủ</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <header class="dash-header">
+                <div>
+                    <h2 style="margin:0;">Báo cáo thống kê</h2>
+                    <p style="color:#666; margin:0; font-size:0.9rem;">Tổng hợp dữ liệu kinh doanh</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-secondary">Tháng này ▼</button>
+                    <button class="btn-primary">Xuất PDF</button>
+                </div>
+            </header>
+
+            <div class="grid-2-col" style="margin-bottom: 2rem;">
+                <!-- Chart: Meters Printed -->
+                <div class="card-panel">
+                    <div class="section-header">
+                        <h3>Biểu đồ số mét in (7 ngày gần nhất)</h3>
+                    </div>
+                    <div id="meters-chart"
+                        style="display: flex; align-items: center; justify-content: center; height: 200px; color: #666;">
+                        Đang tải dữ liệu...
+                    </div>
+                </div>
+
+                <!-- Table: Revenue by Customer -->
+                <div class="card-panel">
+                    <div class="section-header">
+                        <h3>Top Khách hàng</h3>
+                    </div>
+                    <div id="customer-revenue" style="max-height: 250px; overflow-y: auto;">
+                        Đang tải dữ liệu...
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Thời gian</th>
+                            <th>Đơn hàng</th>
+                            <th>Doanh thu</th>
+                            <th>Chi phí</th>
+                            <th>Lợi nhuận</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hôm nay (06/01)</td>
+                            <td>5</td>
+                            <td>8.500.000đ</td>
+                            <td>4.200.000đ</td>
+                            <td class="profit">4.300.000đ</td>
+                        </tr>
+                        <tr>
+                            <td>Tuần này</td>
+                            <td>24</td>
+                            <td>45.000.000đ</td>
+                            <td>20.000.000đ</td>
+                            <td class="profit">25.000.000đ</td>
+                        </tr>
+                        <tr>
+                            <td>Tháng này</td>
+                            <td>24</td>
+                            <td>45.000.000đ</td>
+                            <td>20.000.000đ</td>
+                            <td class="profit">25.000.000đ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+    <script src="js/sheet-sync.js?v=3"></script>
+</body>
+
+</html>

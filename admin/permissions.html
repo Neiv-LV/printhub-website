@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phân quyền - Printhub Admin</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar admin-sidebar">
+            <div class="navbar-brand" style="justify-content: center; margin-bottom: 3rem;">
+                <span class="logo-print">Print</span><span class="logo-hub">hub</span>
+            </div>
+
+            <div class="sidebar-label">QUẢN LÝ</div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html"><span class="icon">📊</span> Tổng quan</a></li>
+                <li><a href="products.html"><span class="icon">📦</span> Sản phẩm</a></li>
+                <li><a href="orders.html"><span class="icon">🛒</span> Đơn hàng</a></li>
+                <li><a href="posts.html"><span class="icon">📝</span> Viết bài</a></li>
+            </ul>
+
+            <div class="sidebar-label">HỆ THỐNG</div>
+            <ul class="sidebar-menu">
+                <li><a href="reports.html"><span class="icon">📈</span> Báo cáo</a></li>
+                <li><a href="permissions.html" class="active"><span class="icon">👥</span> Phân quyền</a></li>
+                <li><a href="settings.html"><span class="icon">⚙️</span> Cài đặt</a></li>
+            </ul>
+
+            <div class="user-mini-profile">
+                <div class="avatar-sm">A</div>
+                <div class="user-info">
+                    <div class="name">Admin User</div>
+                    <div class="role">Super Admin</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1rem; text-align: center;">
+                <a href="../index.html" class="btn-back">← Về trang chủ</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <header class="dash-header">
+                <div>
+                    <h2 style="margin:0;">Quản lý nhân viên</h2>
+                    <p style="color:#666; margin:0; font-size:0.9rem;">Thêm thành viên và phân quyền truy cập</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-primary">+ Mời thành viên</button>
+                </div>
+            </header>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Thành viên</th>
+                            <th>Email</th>
+                            <th>Vai trò</th>
+                            <th>Ngày tham gia</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="user-profile">
+                                    <div class="avatar">A</div>
+                                    <span>Admin User</span>
+                                </div>
+                            </td>
+                            <td>admin@printhub.vn</td>
+                            <td><span class="status completed">Super Admin</span></td>
+                            <td>01/01/2026</td>
+                            <td>Hoạt động</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="user-profile">
+                                    <div class="avatar" style="background-color:#555;">B</div>
+                                    <span>Nguyễn Văn B</span>
+                                </div>
+                            </td>
+                            <td>kho@printhub.vn</td>
+                            <td><span class="status pending">Thủ kho</span></td>
+                            <td>05/01/2026</td>
+                            <td>Hoạt động</td>
+                            <td><button class="btn-outline" style="padding:4px 8px; font-size:0.8rem;">Sửa</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="user-profile">
+                                    <div class="avatar" style="background-color:#555;">M</div>
+                                    <span>Lê Thị M</span>
+                                </div>
+                            </td>
+                            <td>sale@printhub.vn</td>
+                            <td><span class="status pending">Sale</span></td>
+                            <td>06/01/2026</td>
+                            <td>Chờ xác nhận</td>
+                            <td><button class="btn-outline" style="padding:4px 8px; font-size:0.8rem;">Gửi lại</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="js/sheet-sync.js?v=3"></script>
+</body>
+
+</html>
