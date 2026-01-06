@@ -13,7 +13,7 @@ const products = [
             "Đặc điểm: Màu sắc chuẩn, độ bền cao, không lắng cặn"
         ],
         price: "Liên hệ",
-        image: "assets/images/ink_clean.jpg"
+        image: "/assets/images/ink_clean.jpg"
     },
     {
         id: 2,
@@ -29,7 +29,7 @@ const products = [
             "Ứng dụng: Cotton, Polyester, Linen, Nylon, v.v."
         ],
         price: "Liên hệ",
-        image: "assets/images/film_clean.jpg"
+        image: "/assets/images/film_clean.jpg"
     },
     {
         id: 3,
@@ -45,7 +45,7 @@ const products = [
             "Đặc điểm: Hạt mịn trắng, đàn hồi tốt, độ bám cao"
         ],
         price: "Liên hệ",
-        image: "assets/images/powder_clean.jpg"
+        image: "/assets/images/powder_clean.jpg"
     }
 ];
 

@@ -5,7 +5,7 @@ const blogPosts = [
         excerpt: "Tất cả những gì bạn cần biết về công nghệ in đang thống trị thị trường Local Brand 2026. Quy trình, chi phí và cách vận hành.",
         date: "06/01/2026",
         category: "Kiến thức in ấn",
-        image: "assets/images/hero.png",
+        image: "/assets/images/hero.png",
         content: `
             <p class="lead">In PET chuyển nhiệt (Direct to Film - DTF) đã trở thành một "cơn địa chấn" thực sự trong ngành công nghiệp in ấn thời trang, đặc biệt là tại thị trường Việt Nam trong giai đoạn 2024-2026. Không còn là một công nghệ mới lạ, in PET giờ đây là tiêu chuẩn vàng cho các Local Brand nhờ khả năng tái tạo màu sắc tuyệt vời và chi phí đầu tư linh hoạt.</p>
 
@@ -57,7 +57,7 @@ const blogPosts = [
         excerpt: "Phân tích chi tiết về chi phí, độ bền và chất lượng để bạn chọn công nghệ phù hợp nhất cho BRAND của mình.",
         date: "05/01/2026",
         category: "Kiến thức in ấn",
-        image: "assets/images/ink.png",
+        image: "/assets/images/ink.png",
         content: `
             <p class="lead">Khi bắt đầu sản xuất áo thun, câu hỏi đầu tiên của 99% chủ brand là: "Nên in lụa hay in PET?". Cả hai công nghệ này đều đang thống trị thị trường, nhưng chúng phục vụ những mục đích hoàn toàn khác nhau. Bài viết này sẽ đặt lên bàn cân hai "đối thủ" này để bạn có cái nhìn khách quan nhất.</p>
 
@@ -107,7 +107,7 @@ const blogPosts = [
         excerpt: "Cyberpunk, Retro Typography hay Minimalism? Cập nhật ngay để không bị bỏ lại phía sau.",
         date: "04/01/2026",
         category: "Xu hướng thiết kế",
-        image: "assets/images/tshirt_showcase.png",
+        image: "/assets/images/tshirt_showcase.png",
         content: `
             <p class="lead">Thời trang là sự xoay vòng, nhưng công nghệ in ấn 2026 đã cho phép các nhà thiết kế Local Brand Việt Nam sáng tạo không giới hạn. Năm nay, chúng ta chứng kiến sự lên ngôi của những phong cách táo bạo, cá tính và đậm chất kỹ thuật số. Dưới đây là 5 xu hướng đang làm mưa làm gió trên các kệ hàng.</p>
 
@@ -141,7 +141,7 @@ const blogPosts = [
         excerpt: "Hướng dẫn giặt ủi đúng cách để chiếc áo yêu thích của bạn luôn giữ được màu sắc tươi sáng.",
         date: "03/01/2026",
         category: "Kiến thức in ấn",
-        image: "assets/images/film.png",
+        image: "/assets/images/film.png",
         content: `
             <p class="lead">"Của bền tại người". Dù công nghệ in PET 2026 đã cải tiến vượt bậc về độ bền, nhưng một chiếc áo in có giữ được vẻ đẹp sau 6 tháng hay 1 năm hay không phụ thuộc hoàn toàn vào cách bạn giặt và bảo quản nó. Bài viết này là cẩm nang chăm sóc áo mà mọi khách hàng của Printhub nên biết.</p>
 
@@ -181,7 +181,7 @@ const blogPosts = [
         excerpt: "Làm sao để có lợi nhuận khi mới bắt đầu với số vốn nhỏ? Câu trả lời nằm ở quy trình in ấn.",
         date: "02/01/2026",
         category: "Kinh doanh Local Brand",
-        image: "assets/images/powder.png",
+        image: "/assets/images/powder.png",
         content: `
             <p class="lead">Bài toán đau đầu nhất của các Founder Local Brand trẻ là: "Vốn ít, không dám in nhiều, nhưng in ít thì giá vốn cao, bán không có lời". Vòng luẩn quẩn này đã giết chết nhiều thương hiệu tiềm năng. Công nghệ in PET chính là chìa khóa để phá vỡ vòng vây này.</p>
 
@@ -222,7 +222,7 @@ const blogPosts = [
         excerpt: "Mực Hàn, Mực Trung hay Mực Đức? Loại nào cho màu sắc đẹp nhất?",
         date: "01/01/2026",
         category: "Kiến thức in ấn",
-        image: "assets/images/ink.png",
+        image: "/assets/images/ink.png",
         content: `
             <p class="lead">Thị trường vật tư in PET hiện nay như một "ma trận" với đủ mức giá và nguồn gốc: Trung Quốc, Hàn Quốc, Nhật Bản, Mỹ... Nhiều xưởng in vì chạy theo lợi nhuận đã sử dụng mực rẻ tiền, dẫn đến sản phẩm kém chất lượng. Vậy sự khác biệt thực sự nằm ở đâu?</p>
 
@@ -269,7 +269,7 @@ const blogPosts = [
         excerpt: "Kỹ thuật Photoshop nâng cao giúp file in của bạn chuyên nghiệp hơn.",
         date: "30/12/2025",
         category: "Xu hướng thiết kế",
-        image: "assets/images/tshirt_showcase.png",
+        image: "/assets/images/tshirt_showcase.png",
         content: `
             <p class="lead">"Viền trắng" (Halo Effect) là lỗi kỹ thuật phổ biến nhất và cũng là "kẻ hủy diệt" thẩm mỹ của mọi hình in PET trên áo đen. Bạn in một hình con rồng cực ngầu, nhưng xung quanh lại có một đường viền trắng li ti bao quanh? Bài viết này sẽ giúp Designer xử lý triệt để vấn đề này.</p>
 
@@ -303,7 +303,7 @@ const blogPosts = [
         excerpt: "Cam kết chất lượng, tốc độ và giá thành cạnh tranh nhất thị trường.",
         date: "29/12/2025",
         category: "Tin tức Printhub",
-        image: "assets/images/hero.png",
+        image: "/assets/images/hero.png",
         content: `
             <p class="lead">Giữa hàng trăm xưởng in lớn nhỏ tại Việt Nam, đâu là lý do khiến hơn 500+ Local Brand tin tưởng lựa chọn Printhub làm đối tác sản xuất chiến lược? Không chỉ là in ấn, chúng tôi cung cấp giải pháp toàn diện cho doanh nghiệp thời trang.</p>
 
@@ -342,7 +342,7 @@ const blogPosts = [
         excerpt: "Làm sao để tạo hiệu ứng nứt, cũ kỹ đúng chất Retro trên áo thun mới?",
         date: "28/12/2025",
         category: "Xu hướng thiết kế",
-        image: "assets/images/tshirt_showcase.png",
+        image: "/assets/images/tshirt_showcase.png",
         content: `
             <p class="lead">Áo thun Vintage (hoặc Secondhand) với chất vải wash bạc màu và hình in nứt nẻ (cracked) đang được săn lùng ráo riết. Nhưng nguồn hàng 2hand có hạn và form dáng không phù hợp. Các Brand chọn cách sản xuất áo mới nhưng "giả cổ" (Faux Vintage). Làm sao để in PET - công nghệ in hiện đại, bóng bẩy - lại ra được chất cổ điển này?</p>
 
@@ -372,7 +372,7 @@ const blogPosts = [
         excerpt: "Hình in bị bong tróc, nhăn nheo? Xem ngay để biết nguyên nhân.",
         date: "27/12/2025",
         category: "Kiến thức in ấn",
-        image: "assets/images/film.png",
+        image: "/assets/images/film.png",
         content: `
             <p class="lead">Bạn nhận màng in PET rất đẹp, nhưng khi ép lên áo lại bị lỗi: bong mép, bề mặt sần sùi, hoặc hình in bị biến dạng? 80% lỗi nằm ở kỹ thuật ép nhiệt chứ không phải do màng in. Dưới đây là bảng tổng hợp các "bệnh" thường gặp và cách chữa trị.</p>
 
