@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nội dung trang - Printhub Admin</title>
+    <link rel="stylesheet" href="../styles.css?v=20260107v1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0f0f0f;
+        }
+
+        .content-editor {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-editor h3 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #888;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .preview-badge {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: auto;
+        }
+
+        .stats-editor {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-input-group {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .stat-input-group label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .action-bar {
+            position: sticky;
+            bottom: 0;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            margin: 0 -2rem -2rem -2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .save-status {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .save-status.saving {
+            color: #ff9800;
+        }
+
+        .save-status.saved {
+            color: #4caf50;
+        }
+
+        .tab-nav {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 1rem;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar admin-sidebar">
+            <div class="navbar-brand" style="justify-content: center; margin-bottom: 3rem;">
+                <span class="logo-print">Print</span><span class="logo-hub">hub</span>
+            </div>
+
+            <div class="sidebar-label">QUẢN LÝ</div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html"><span class="icon">📊</span> Tổng quan</a></li>
+                <li><a href="content.html" class="active"><span class="icon">📝</span> Nội dung</a></li>
+                <li><a href="products.html"><span class="icon">📦</span> Sản phẩm</a></li>
+                <li><a href="orders.html"><span class="icon">🛒</span> Đơn hàng</a></li>
+                <li><a href="posts.html"><span class="icon">✍️</span> Blog</a></li>
+            </ul>
+
+            <div class="sidebar-label">HỆ THỐNG</div>
+            <ul class="sidebar-menu">
+                <li><a href="reports.html"><span class="icon">📈</span> Báo cáo</a></li>
+                <li><a href="permissions.html"><span class="icon">👥</span> Phân quyền</a></li>
+                <li><a href="settings.html"><span class="icon">⚙️</span> Cài đặt</a></li>
+            </ul>
+
+            <div class="user-mini-profile">
+                <div class="avatar-sm">A</div>
+                <div class="user-info">
+                    <div class="name" id="user-name">Admin</div>
+                    <div class="role" id="user-role">Loading...</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1rem; text-align: center;">
+                <a href="../index.html" class="btn-back">← Về trang chủ</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <header class="dash-header">
+                <div>
+                    <h2 style="margin:0;">Quản lý nội dung</h2>
+                    <p style="color:#666; margin:0; font-size:0.9rem;">Chỉnh sửa văn bản, hình ảnh trên website</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-secondary" id="preview-btn">👁 Xem trước</button>
+                    <button class="btn-primary" id="save-btn">💾 Lưu thay đổi</button>
+                </div>
+            </header>
+
+            <!-- Tab Navigation -->
+            <div class="tab-nav">
+                <button class="tab-btn active" data-tab="homepage">🏠 Trang chủ</button>
+                <button class="tab-btn" data-tab="contact">📞 Liên hệ</button>
+                <button class="tab-btn" data-tab="seo">🔍 SEO</button>
+            </div>
+
+            <!-- Homepage Tab -->
+            <div class="tab-content active" id="tab-homepage">
+                <!-- Hero Section -->
+                <div class="content-editor">
+                    <h3>🎯 Hero Section <span class="preview-badge">Live</span></h3>
+
+                    <div class="form-group">
+                        <label>Badge (Dòng nhỏ trên tiêu đề)</label>
+                        <input type="text" id="hero-badge" value="Dẫn đầu xu hướng in ấn 2026">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Tiêu đề chính (dòng 1)</label>
+                            <input type="text" id="hero-title" value="In PET Chuyển Nhiệt">
+                        </div>
+                        <div class="form-group">
+                            <label>Tiêu đề chính (dòng 2 - highlight)</label>
+                            <input type="text" id="hero-highlight" value="Đẳng Cấp Local Brand">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mô tả</label>
+                        <textarea
+                            id="hero-description">Công nghệ in siêu tốc, màu sắc rực rỡ, độ bền vĩnh cửu. Đối tác tin cậy của hơn 500+ thương hiệu thời trang Việt Nam.</textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nút CTA chính</label>
+                            <input type="text" id="hero-cta-primary" value="Gọi tư vấn ngay">
+                        </div>
+                        <div class="form-group">
+                            <label>Nút CTA phụ</label>
+                            <input type="text" id="hero-cta-secondary" value="Xem bảng giá">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Section -->
+                <div class="content-editor">
+                    <h3>📊 Thống kê (Hero Stats)</h3>
+
+                    <div class="stats-editor">
+                        <div class="stat-input-group">
+                            <label>Số liệu 1</label>
+                            <input type="text" id="stat1-value" value="500+"
+                                style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;">
+                            <input type="text" id="stat1-label" value="Khách hàng">
+                        </div>
+                        <div class="stat-input-group">
+                            <label>Số liệu 2</label>
+                            <input type="text" id="stat2-value" value="24h"
+                                style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;">
+                            <input type="text" id="stat2-label" value="Giao hàng">
+                        </div>
+                        <div class="stat-input-group">
+                            <label>Số liệu 3</label>
+                            <input type="text" id="stat3-value" value="100%"
+                                style="font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;">
+                            <input type="text" id="stat3-label" value="Hài lòng">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Tab -->
+            <div class="tab-content" id="tab-contact">
+                <div class="content-editor">
+                    <h3>📞 Thông tin liên hệ</h3>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Hotline</label>
+                            <input type="text" id="contact-hotline" value="0906.688.013">
+                        </div>
+                        <div class="form-group">
+                            <label>Website</label>
+                            <input type="text" id="contact-website" value="Printhub.com.vn">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Địa chỉ</label>
+                        <input type="text" id="contact-address" value="123 Nguyễn Văn Cừ, Q.5, TP.HCM">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Facebook URL</label>
+                            <input type="url" id="social-facebook" value="https://facebook.com/printhub">
+                        </div>
+                        <div class="form-group">
+                            <label>Zalo URL</label>
+                            <input type="url" id="social-zalo" value="https://zalo.me/84906688013">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>TikTok URL</label>
+                        <input type="url" id="social-tiktok" value="https://tiktok.com/@printhub">
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEO Tab -->
+            <div class="tab-content" id="tab-seo">
+                <div class="content-editor">
+                    <h3>🔍 Cài đặt SEO</h3>
+
+                    <div class="form-group">
+                        <label>Tiêu đề trang (Title Tag)</label>
+                        <input type="text" id="seo-title"
+                            value="Printhub - In PET Chuyển Nhiệt Siêu Tốc & Nguyên Liệu Giá Sỉ">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mô tả (Meta Description)</label>
+                        <textarea
+                            id="seo-description">Printhub chuyên in PET chuyển nhiệt chất lượng cao lấy ngay cho Local Brand. Cung cấp mực in UMO, màng PET, bột chuyển nhiệt giá sỉ tận xưởng tại TP.HCM.</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Từ khóa (Keywords)</label>
+                        <input type="text" id="seo-keywords"
+                            value="in pet chuyển nhiệt, in pet lấy ngay, in áo local brand, mực in pet, màng pet, printhub">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Bar -->
+            <div class="action-bar">
+                <span class="save-status" id="save-status">Chưa có thay đổi</span>
+                <div style="display: flex; gap: 1rem;">
+                    <button class="btn-secondary" id="reset-btn">↩ Hoàn tác</button>
+                    <button class="btn-primary" id="publish-btn">🚀 Lưu & Xuất bản</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script>
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Track changes
+        let hasChanges = false;
+        const statusEl = document.getElementById('save-status');
+
+        document.querySelectorAll('input, textarea').forEach(input => {
+            input.addEventListener('input', () => {
+                hasChanges = true;
+                statusEl.textContent = '⚪ Có thay đổi chưa lưu';
+                statusEl.className = 'save-status';
+            });
+        });
+
+        // Save functionality
+        document.getElementById('save-btn').addEventListener('click', saveContent);
+        document.getElementById('publish-btn').addEventListener('click', saveContent);
+
+        async function saveContent() {
+            statusEl.textContent = '⏳ Đang lưu...';
+            statusEl.className = 'save-status saving';
+
+            const content = {
+                hero: {
+                    badge: document.getElementById('hero-badge').value,
+                    title: document.getElementById('hero-title').value,
+                    highlight: document.getElementById('hero-highlight').value,
+                    description: document.getElementById('hero-description').value,
+                    cta_primary: document.getElementById('hero-cta-primary').value,
+                    cta_secondary: document.getElementById('hero-cta-secondary').value
+                },
+                stats: {
+                    items: [
+                        { value: document.getElementById('stat1-value').value, label: document.getElementById('stat1-label').value },
+                        { value: document.getElementById('stat2-value').value, label: document.getElementById('stat2-label').value },
+                        { value: document.getElementById('stat3-value').value, label: document.getElementById('stat3-label').value }
+                    ]
+                },
+                contact: {
+                    hotline: document.getElementById('contact-hotline').value,
+                    website: document.getElementById('contact-website').value,
+                    address: document.getElementById('contact-address').value,
+                    facebook: document.getElementById('social-facebook').value,
+                    zalo: document.getElementById('social-zalo').value,
+                    tiktok: document.getElementById('social-tiktok').value
+                },
+                seo: {
+                    title: document.getElementById('seo-title').value,
+                    description: document.getElementById('seo-description').value,
+                    keywords: document.getElementById('seo-keywords').value
+                }
+            };
+
+            // Save to localStorage for now (until Supabase is configured)
+            localStorage.setItem('printhub_content', JSON.stringify(content));
+
+            // If Supabase is configured, save there too
+            if (typeof updatePageContent === 'function') {
+                try {
+                    await updatePageContent('homepage', 'hero', content.hero);
+                    await updatePageContent('homepage', 'stats', content.stats);
+                    await updatePageContent('homepage', 'contact', content.contact);
+                } catch (err) {
+                    console.log('Supabase not configured yet, saved to localStorage');
+                }
+            }
+
+            setTimeout(() => {
+                hasChanges = false;
+                statusEl.textContent = '✅ Đã lưu thành công!';
+                statusEl.className = 'save-status saved';
+            }, 500);
+        }
+
+        // Load content
+        async function loadContent() {
+            // Try localStorage first
+            const saved = localStorage.getItem('printhub_content');
+            if (saved) {
+                const content = JSON.parse(saved);
+
+                if (content.hero) {
+                    document.getElementById('hero-badge').value = content.hero.badge || '';
+                    document.getElementById('hero-title').value = content.hero.title || '';
+                    document.getElementById('hero-highlight').value = content.hero.highlight || '';
+                    document.getElementById('hero-description').value = content.hero.description || '';
+                    document.getElementById('hero-cta-primary').value = content.hero.cta_primary || '';
+                    document.getElementById('hero-cta-secondary').value = content.hero.cta_secondary || '';
+                }
+
+                if (content.stats?.items) {
+                    content.stats.items.forEach((stat, i) => {
+                        document.getElementById(`stat${i + 1}-value`).value = stat.value || '';
+                        document.getElementById(`stat${i + 1}-label`).value = stat.label || '';
+                    });
+                }
+
+                if (content.contact) {
+                    document.getElementById('contact-hotline').value = content.contact.hotline || '';
+                    document.getElementById('contact-website').value = content.contact.website || '';
+                    document.getElementById('contact-address').value = content.contact.address || '';
+                    document.getElementById('social-facebook').value = content.contact.facebook || '';
+                    document.getElementById('social-zalo').value = content.contact.zalo || '';
+                    document.getElementById('social-tiktok').value = content.contact.tiktok || '';
+                }
+
+                if (content.seo) {
+                    document.getElementById('seo-title').value = content.seo.title || '';
+                    document.getElementById('seo-description').value = content.seo.description || '';
+                    document.getElementById('seo-keywords').value = content.seo.keywords || '';
+                }
+            }
+        }
+
+        // Preview button
+        document.getElementById('preview-btn').addEventListener('click', () => {
+            window.open('../index.html', '_blank');
+        });
+
+        // Initialize
+        loadContent();
+
+        // Auth check
+        if (!localStorage.getItem('isLoggedIn')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+
+</html>

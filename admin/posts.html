@@ -4,11 +4,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Viết bài - Printhub Admin</title>
-    <link rel="stylesheet" href="../styles.css?v=4">
+    <title>Quản lý Blog - Printhub Admin</title>
+    <link rel="stylesheet" href="../styles.css?v=20260107v1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0f0f0f;
+        }
+
+        .posts-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .search-filter {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .search-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            width: 250px;
+        }
+
+        .filter-select {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .post-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .post-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #1a0a00 0%, #0f0f0f 100%);
+        }
+
+        .post-content {
+            padding: 1.2rem;
+        }
+
+        .post-status {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-status.published {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+        }
+
+        .post-status.draft {
+            background: rgba(255, 152, 0, 0.1);
+            color: #ff9800;
+        }
+
+        .post-status.scheduled {
+            background: rgba(33, 150, 243, 0.1);
+            color: #2196f3;
+        }
+
+        .post-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .post-meta {
+            font-size: 0.8rem;
+            color: #666;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .post-actions button {
+            background: transparent;
+            border: none;
+            color: #888;
+            cursor: pointer;
+            padding: 0.3rem;
+            transition: color 0.2s;
+        }
+
+        .post-actions button:hover {
+            color: white;
+        }
+
+        .post-actions button.delete:hover {
+            color: #f44336;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: #666;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #888;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .image-upload {
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .image-upload:hover {
+            border-color: var(--primary-color);
+        }
+
+        .image-upload.has-image {
+            padding: 0;
+            border-style: solid;
+        }
+
+        .image-upload img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+    </style>
 </head>
 
 <body>
@@ -22,9 +258,10 @@
             <div class="sidebar-label">QUẢN LÝ</div>
             <ul class="sidebar-menu">
                 <li><a href="index.html"><span class="icon">📊</span> Tổng quan</a></li>
+                <li><a href="content.html"><span class="icon">📝</span> Nội dung</a></li>
                 <li><a href="products.html"><span class="icon">📦</span> Sản phẩm</a></li>
                 <li><a href="orders.html"><span class="icon">🛒</span> Đơn hàng</a></li>
-                <li><a href="posts.html" class="active"><span class="icon">📝</span> Viết bài</a></li>
+                <li><a href="posts.html" class="active"><span class="icon">✍️</span> Blog</a></li>
             </ul>
 
             <div class="sidebar-label">HỆ THỐNG</div>
@@ -37,7 +274,7 @@
             <div class="user-mini-profile">
                 <div class="avatar-sm">A</div>
                 <div class="user-info">
-                    <div class="name">Admin User</div>
+                    <div class="name">Admin</div>
                     <div class="role">Super Admin</div>
                 </div>
             </div>
@@ -51,40 +288,366 @@
         <main class="dashboard-main">
             <header class="dash-header">
                 <div>
-                    <h2 style="margin:0;">Viết bài mới</h2>
-                    <p style="color:#666; margin:0; font-size:0.9rem;">Chia sẻ kiến thức và tin tức</p>
+                    <h2 style="margin:0;">Quản lý Blog</h2>
+                    <p style="color:#666; margin:0; font-size:0.9rem;">Tạo và quản lý bài viết</p>
                 </div>
                 <div class="header-actions">
-                    <button class="btn-secondary">Lưu nháp</button>
-                    <button class="btn-primary">Đăng bài</button>
+                    <button class="btn-primary" id="new-post-btn">✍️ Viết bài mới</button>
                 </div>
             </header>
 
-            <div class="card-panel">
-                <div style="margin-bottom: 1.5rem;">
-                    <label style="display:block; margin-bottom:0.5rem; color:#888;">Tiêu đề bài viết</label>
-                    <input type="text" placeholder="Nhập tiêu đề..."
-                        style="width:100%; padding:0.8rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-size:1rem;">
+            <!-- Search & Filter -->
+            <div class="posts-header">
+                <div class="search-filter">
+                    <input type="text" class="search-input" placeholder="🔍 Tìm kiếm bài viết..." id="search-input">
+                    <select class="filter-select" id="status-filter">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="published">Đã xuất bản</option>
+                        <option value="draft">Bản nháp</option>
+                        <option value="scheduled">Lên lịch</option>
+                    </select>
+                    <select class="filter-select" id="category-filter">
+                        <option value="">Tất cả danh mục</option>
+                        <option value="kien-thuc-in-an">Kiến thức in ấn</option>
+                        <option value="kinh-doanh-local-brand">Kinh doanh Local Brand</option>
+                        <option value="xu-huong-thiet-ke">Xu hướng thiết kế</option>
+                    </select>
                 </div>
+                <div style="color: #666; font-size: 0.9rem;">
+                    Hiển thị <span id="post-count">0</span> bài viết
+                </div>
+            </div>
 
-                <div style="margin-bottom: 1.5rem;">
-                    <label style="display:block; margin-bottom:0.5rem; color:#888;">Ảnh đại diện</label>
-                    <div
-                        style="border: 2px dashed rgba(255,255,255,0.1); padding: 2rem; text-align: center; border-radius: 8px;">
-                        <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">📷</span>
-                        <p style="color: #666; margin: 0;">Kéo thả ảnh hoặc click để tải lên</p>
-                    </div>
-                </div>
-
-                <div style="margin-bottom: 1.5rem;">
-                    <label style="display:block; margin-bottom:0.5rem; color:#888;">Nội dung</label>
-                    <textarea placeholder="Nội dung bài viết..."
-                        style="width:100%; height: 300px; padding:0.8rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white; font-family:inherit; resize: vertical;"></textarea>
-                </div>
+            <!-- Posts Grid -->
+            <div class="posts-grid" id="posts-grid">
+                <!-- Posts will be rendered here -->
             </div>
         </main>
     </div>
-    <script src="js/sheet-sync.js?v=3"></script>
+
+    <!-- Post Editor Modal -->
+    <div class="modal-overlay" id="post-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Viết bài mới</h3>
+                <button class="modal-close" id="modal-close">×</button>
+            </div>
+
+            <form id="post-form">
+                <input type="hidden" id="post-id">
+
+                <div class="form-group">
+                    <label>Tiêu đề bài viết *</label>
+                    <input type="text" id="post-title" placeholder="Nhập tiêu đề..." required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Slug (URL)</label>
+                        <input type="text" id="post-slug" placeholder="tieu-de-bai-viet">
+                    </div>
+                    <div class="form-group">
+                        <label>Danh mục</label>
+                        <select id="post-category">
+                            <option value="">Chọn danh mục</option>
+                            <option value="1">Kiến thức in ấn</option>
+                            <option value="2">Kinh doanh Local Brand</option>
+                            <option value="3">Xu hướng thiết kế</option>
+                            <option value="4">Tin tức Printhub</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Ảnh đại diện</label>
+                    <div class="image-upload" id="image-upload">
+                        <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">📷</span>
+                        <p style="color: #666; margin: 0;">Click để tải ảnh lên</p>
+                    </div>
+                    <input type="file" id="image-input" accept="image/*" style="display: none;">
+                    <input type="hidden" id="post-image">
+                </div>
+
+                <div class="form-group">
+                    <label>Tóm tắt</label>
+                    <textarea id="post-excerpt" rows="3" placeholder="Mô tả ngắn về bài viết..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Nội dung *</label>
+                    <textarea id="post-content" rows="10" placeholder="Nội dung bài viết..." required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Meta Title (SEO)</label>
+                        <input type="text" id="post-meta-title" placeholder="Tiêu đề hiển thị trên Google">
+                    </div>
+                    <div class="form-group">
+                        <label>Trạng thái</label>
+                        <select id="post-status">
+                            <option value="draft">Bản nháp</option>
+                            <option value="published">Xuất bản ngay</option>
+                            <option value="scheduled">Lên lịch</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Meta Description (SEO)</label>
+                    <textarea id="post-meta-desc" rows="2" placeholder="Mô tả hiển thị trên Google"></textarea>
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                    <button type="button" class="btn-secondary" id="cancel-btn">Hủy</button>
+                    <button type="button" class="btn-secondary" id="save-draft-btn">Lưu nháp</button>
+                    <button type="submit" class="btn-primary">💾 Lưu bài viết</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/blog-data.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <script>
+        const postsGrid = document.getElementById('posts-grid');
+        const postModal = document.getElementById('post-modal');
+        const postForm = document.getElementById('post-form');
+        const postCount = document.getElementById('post-count');
+        const searchInput = document.getElementById('search-input');
+        const statusFilter = document.getElementById('status-filter');
+        const imageUpload = document.getElementById('image-upload');
+        const imageInput = document.getElementById('image-input');
+
+        let posts = [];
+
+        // Load existing blog data
+        if (typeof blogPosts !== 'undefined') {
+            posts = blogPosts.map((post, index) => ({
+                id: index + 1,
+                title: post.title,
+                slug: post.slug || post.title.toLowerCase().replace(/\s+/g, '-'),
+                excerpt: post.excerpt,
+                content: post.content,
+                featured_image: post.image,
+                category_id: post.category === 'kien-thuc-in-an' ? 1 : post.category === 'kinh-doanh' ? 2 : 3,
+                status: 'published',
+                created_at: post.date,
+                view_count: post.readTime ? parseInt(post.readTime) * 100 : 0
+            }));
+        }
+
+        // Load from localStorage
+        const savedPosts = localStorage.getItem('printhub_blog_posts');
+        if (savedPosts) {
+            posts = JSON.parse(savedPosts);
+        }
+
+        function renderPosts() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const statusFilterValue = statusFilter.value;
+
+            let filteredPosts = posts.filter(post => {
+                const matchesSearch = post.title.toLowerCase().includes(searchTerm);
+                const matchesStatus = !statusFilterValue || post.status === statusFilterValue;
+                return matchesSearch && matchesStatus;
+            });
+
+            postCount.textContent = filteredPosts.length;
+
+            postsGrid.innerHTML = filteredPosts.map(post => `
+                <div class="post-card" data-id="${post.id}">
+                    <img src="${post.featured_image || '/assets/images/blog/default.jpg'}" 
+                         alt="${post.title}" 
+                         class="post-image"
+                         onerror="this.src='https://via.placeholder.com/400x200/1a1a1a/666?text=No+Image'">
+                    <div class="post-content">
+                        <span class="post-status ${post.status}">${getStatusLabel(post.status)}</span>
+                        <h4 class="post-title">${post.title}</h4>
+                        <div class="post-meta">
+                            <span>${formatDate(post.created_at)}</span>
+                            <div class="post-actions">
+                                <button onclick="editPost(${post.id})" title="Sửa">✏️</button>
+                                <button onclick="viewPost(${post.id})" title="Xem">👁</button>
+                                <button class="delete" onclick="deletePost(${post.id})" title="Xóa">🗑️</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getStatusLabel(status) {
+            const labels = {
+                'published': 'Đã xuất bản',
+                'draft': 'Bản nháp',
+                'scheduled': 'Lên lịch'
+            };
+            return labels[status] || status;
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return 'N/A';
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('vi-VN');
+        }
+
+        // Modal handling
+        document.getElementById('new-post-btn').addEventListener('click', () => {
+            document.getElementById('modal-title').textContent = 'Viết bài mới';
+            postForm.reset();
+            document.getElementById('post-id').value = '';
+            imageUpload.innerHTML = `
+                <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">📷</span>
+                <p style="color: #666; margin: 0;">Click để tải ảnh lên</p>
+            `;
+            imageUpload.classList.remove('has-image');
+            postModal.classList.add('active');
+        });
+
+        document.getElementById('modal-close').addEventListener('click', closeModal);
+        document.getElementById('cancel-btn').addEventListener('click', closeModal);
+
+        function closeModal() {
+            postModal.classList.remove('active');
+        }
+
+        postModal.addEventListener('click', (e) => {
+            if (e.target === postModal) closeModal();
+        });
+
+        // Auto-generate slug
+        document.getElementById('post-title').addEventListener('input', (e) => {
+            const slug = e.target.value
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/đ/g, 'd')
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-|-$/g, '');
+            document.getElementById('post-slug').value = slug;
+        });
+
+        // Image upload
+        imageUpload.addEventListener('click', () => imageInput.click());
+
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    imageUpload.innerHTML = `<img src="${ev.target.result}" alt="Preview">`;
+                    imageUpload.classList.add('has-image');
+                    document.getElementById('post-image').value = ev.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Save post
+        postForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            savePost('published');
+        });
+
+        document.getElementById('save-draft-btn').addEventListener('click', () => {
+            savePost('draft');
+        });
+
+        function savePost(status) {
+            const postId = document.getElementById('post-id').value;
+            const postData = {
+                id: postId ? parseInt(postId) : Date.now(),
+                title: document.getElementById('post-title').value,
+                slug: document.getElementById('post-slug').value,
+                excerpt: document.getElementById('post-excerpt').value,
+                content: document.getElementById('post-content').value,
+                featured_image: document.getElementById('post-image').value,
+                category_id: parseInt(document.getElementById('post-category').value) || null,
+                status: status,
+                meta_title: document.getElementById('post-meta-title').value,
+                meta_description: document.getElementById('post-meta-desc').value,
+                created_at: postId ? posts.find(p => p.id === parseInt(postId))?.created_at : new Date().toISOString(),
+                updated_at: new Date().toISOString()
+            };
+
+            if (postId) {
+                // Update existing
+                const index = posts.findIndex(p => p.id === parseInt(postId));
+                if (index !== -1) {
+                    posts[index] = { ...posts[index], ...postData };
+                }
+            } else {
+                // Add new
+                posts.unshift(postData);
+            }
+
+            // Save to localStorage
+            localStorage.setItem('printhub_blog_posts', JSON.stringify(posts));
+
+            closeModal();
+            renderPosts();
+            alert('✅ Đã lưu bài viết!');
+        }
+
+        function editPost(id) {
+            const post = posts.find(p => p.id === id);
+            if (!post) return;
+
+            document.getElementById('modal-title').textContent = 'Chỉnh sửa bài viết';
+            document.getElementById('post-id').value = post.id;
+            document.getElementById('post-title').value = post.title;
+            document.getElementById('post-slug').value = post.slug;
+            document.getElementById('post-excerpt').value = post.excerpt || '';
+            document.getElementById('post-content').value = post.content || '';
+            document.getElementById('post-category').value = post.category_id || '';
+            document.getElementById('post-status').value = post.status;
+            document.getElementById('post-meta-title').value = post.meta_title || '';
+            document.getElementById('post-meta-desc').value = post.meta_description || '';
+
+            if (post.featured_image) {
+                imageUpload.innerHTML = `<img src="${post.featured_image}" alt="Preview">`;
+                imageUpload.classList.add('has-image');
+                document.getElementById('post-image').value = post.featured_image;
+            } else {
+                imageUpload.innerHTML = `
+                    <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">📷</span>
+                    <p style="color: #666; margin: 0;">Click để tải ảnh lên</p>
+                `;
+                imageUpload.classList.remove('has-image');
+            }
+
+            postModal.classList.add('active');
+        }
+
+        function viewPost(id) {
+            const post = posts.find(p => p.id === id);
+            if (post && post.slug) {
+                window.open(`../blog-detail.html?slug=${post.slug}`, '_blank');
+            }
+        }
+
+        function deletePost(id) {
+            if (confirm('Bạn có chắc muốn xóa bài viết này?')) {
+                posts = posts.filter(p => p.id !== id);
+                localStorage.setItem('printhub_blog_posts', JSON.stringify(posts));
+                renderPosts();
+            }
+        }
+
+        // Search & filter
+        searchInput.addEventListener('input', renderPosts);
+        statusFilter.addEventListener('change', renderPosts);
+
+        // Auth check
+        if (!localStorage.getItem('isLoggedIn')) {
+            window.location.href = 'login.html';
+        }
+
+        // Initial render
+        renderPosts();
+    </script>
 </body>
 
 </html>
