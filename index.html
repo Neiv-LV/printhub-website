@@ -20,7 +20,7 @@
         content="Công nghệ in siêu tốc, màu sắc rực rỡ, độ bền vĩnh cửu. Đối tác tin cậy của hơn 500+ thương hiệu thời trang.">
     <meta property="og:image" content="https://printhub.com.vn/assets/images/hero.png">
 
-    <link rel="stylesheet" href="styles.css?v=4">
+    <link rel="stylesheet" href="styles.css?v=20260107v1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -44,6 +44,11 @@
             <div class="auth-buttons">
                 <a href="tel:+84906688013" class="btn-contact">Liên hệ ngay</a>
             </div>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
 
         <main>
@@ -308,7 +313,27 @@
             </div>
         </footer>
     </div>
-    <script>const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("visible"); } }); }); document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));</script>
+    <script>
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("visible"); } }); });
+        document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navbarLinks = document.querySelector('.navbar-links');
+        if (mobileToggle && navbarLinks) {
+            mobileToggle.addEventListener('click', () => {
+                navbarLinks.classList.toggle('active');
+                mobileToggle.classList.toggle('active');
+            });
+            // Close menu when clicking a link
+            navbarLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navbarLinks.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                });
+            });
+        }
+    </script>
 </body>
 
 </html>

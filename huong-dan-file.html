@@ -9,7 +9,7 @@
         content="Hướng dẫn chi tiết cách xuất file in PET chuyển nhiệt, xử lý nền, hệ màu CMYK để đảm bảo hình in sắc nét, đúng màu.">
     <meta name="keywords" content="hướng dẫn in pet, xuất file in pet, file in dtf, cách in pet không bị nhiễm màu">
     <link rel="canonical" href="https://printhub.com.vn/huong-dan-file.html">
-    <link rel="stylesheet" href="styles.css?v=4">
+    <link rel="stylesheet" href="styles.css?v=20260107v1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -33,6 +33,11 @@
             <div class="auth-buttons">
                 <a href="#contact" class="btn-primary">Liên hệ ngay</a>
             </div>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
 
         <main>
@@ -148,6 +153,24 @@
             </div>
         </footer>
     </div>
+    <script>
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navbarLinks = document.querySelector('.navbar-links');
+        if (mobileToggle && navbarLinks) {
+            mobileToggle.addEventListener('click', () => {
+                navbarLinks.classList.toggle('active');
+                mobileToggle.classList.toggle('active');
+            });
+            // Close menu when clicking a link
+            navbarLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navbarLinks.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                });
+            });
+        }
+    </script>
 </body>
 
 </html>

@@ -9,7 +9,7 @@
         content="Tổng hợp kiến thức in PET chuyển nhiệt, kinh nghiệm kinh doanh Local Brand và xu hướng thiết kế áo thun mới nhất 2026.">
     <meta name="keywords" content="blog in ấn, kiến thức in pet, kinh doanh local brand, xu hướng in áo 2026">
     <link rel="canonical" href="https://printhub.com.vn/blog.html">
-    <link rel="stylesheet" href="styles.css?v=4">
+    <link rel="stylesheet" href="styles.css?v=20260107v1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -36,6 +36,11 @@
             <div class="auth-buttons">
                 <a href="index.html#contact" class="btn-primary">Liên hệ ngay</a>
             </div>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
 
         <main style="padding-top: 2rem;">
@@ -191,6 +196,24 @@
         </footer>
     </div>
 
+    <script>
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navbarLinks = document.querySelector('.navbar-links');
+        if (mobileToggle && navbarLinks) {
+            mobileToggle.addEventListener('click', () => {
+                navbarLinks.classList.toggle('active');
+                mobileToggle.classList.toggle('active');
+            });
+            // Close menu when clicking a link
+            navbarLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navbarLinks.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                });
+            });
+        }
+    </script>
     <script src="admin/js/blog-data.js"></script>
 </body>
 

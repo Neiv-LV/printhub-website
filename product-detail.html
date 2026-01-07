@@ -7,7 +7,7 @@
     <title>Chi Tiết Sản Phẩm In Ấn - Printhub.com.vn</title>
     <meta name="description"
         content="Thông tin chi tiết về các sản phẩm in PET, mực in, màng phim và bột chuyển nhiệt chất lượng cao tại Printhub.">
-    <link rel="stylesheet" href="styles.css?v=4">
+    <link rel="stylesheet" href="styles.css?v=20260107v1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -33,6 +33,11 @@
             <div class="auth-buttons">
                 <a href="tel:+84906688013" class="btn-contact">Liên hệ ngay</a>
             </div>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
 
         <main style="padding: 4rem 2rem; max-width: 1100px; margin: 0 auto;">
@@ -168,6 +173,23 @@
             document.getElementById('breadcrumb-title').textContent = product.title;
             document.getElementById('product-desc').textContent = product.fullDesc;
             document.getElementById('product-specs').innerHTML = renderSpecs(product.specs);
+
+            // Mobile Menu Toggle
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const navbarLinks = document.querySelector('.navbar-links');
+            if (mobileToggle && navbarLinks) {
+                mobileToggle.addEventListener('click', () => {
+                    navbarLinks.classList.toggle('active');
+                    mobileToggle.classList.toggle('active');
+                });
+                // Close menu when clicking a link
+                navbarLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navbarLinks.classList.remove('active');
+                        mobileToggle.classList.remove('active');
+                    });
+                });
+            }
         });
     </script>
 </body>
