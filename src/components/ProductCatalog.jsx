@@ -1,16 +1,16 @@
 import React from 'react';
 
 const products = [
-    { id: 1, name: 'Premium PET Ink', category: 'Ink', price: 'Contact for Price', image: 'https://via.placeholder.com/300/ff3e00/ffffff?text=PET+Ink' },
-    { id: 2, name: 'Hot Peel Film', category: 'Film', price: 'Contact for Price', image: 'https://via.placeholder.com/300/242424/ffffff?text=PET+Film' },
-    { id: 3, name: 'Adhesive Powder', category: 'Powder', price: 'Contact for Price', image: 'https://via.placeholder.com/300/ffffff/000000?text=PET+Powder' },
+    { id: 1, name: 'Mực in PET UMO', category: 'Mực in', price: 'Liên hệ báo giá', image: '/assets/images/ink_clean.jpg' },
+    { id: 2, name: 'Màng PET 60cm', category: 'Màng in', price: 'Liên hệ báo giá', image: '/assets/images/film_clean.jpg' },
+    { id: 3, name: 'Bột PET chống nhiễm', category: 'Bột chuyển nhiệt', price: 'Liên hệ báo giá', image: '/assets/images/powder_clean.jpg' },
 ];
 
 const ProductCatalog = () => {
     return (
         <section id="products" className="products">
-            <h2>Printing Supplies</h2>
-            <p className="subtitle">Top-grade materials for professional results</p>
+            <h2>Nguyên liệu in ấn</h2>
+            <p className="subtitle">Cung cấp vật tư chính hãng cho xưởng in chuyên nghiệp</p>
             <div className="product-grid">
                 {products.map(product => (
                     <div key={product.id} className="product-card">
@@ -19,7 +19,7 @@ const ProductCatalog = () => {
                             <span className="category">{product.category}</span>
                             <h3>{product.name}</h3>
                             <p className="price">{product.price}</p>
-                            <button className="btn-outline">Details</button>
+                            <button className="btn-outline">Chi tiết</button>
                         </div>
                     </div>
                 ))}
