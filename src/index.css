@@ -69,10 +69,10 @@ button:hover {
 .navbar-brand {
     font-size: 1.5rem;
     font-weight: 800;
-    background: linear-gradient(135deg, var(--primary-color), #ff8f00);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 2px;
 }
 
 .navbar-links {
