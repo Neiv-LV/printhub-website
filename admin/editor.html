@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Editor - Printhub Admin</title>
+    <link rel="stylesheet" href="../styles.css?v=5">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .editor-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .editor-sidebar {
+            width: 350px;
+            background: #0f0f0f;
+            border-right: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .editor-header {
+            padding: 1rem;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .editor-content {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .editor-preview {
+            flex: 1;
+            background: #1a1a1a;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #fff;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            background: #222;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .btn-save {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .btn-save:hover {
+            opacity: 0.9;
+        }
+
+        .btn-back {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-back:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="editor-container">
+        <!-- Sidebar Controls -->
+        <aside class="editor-sidebar">
+            <div class="editor-header">
+                <div>
+                    <h3 style="margin:0; color:white;">Visual Editor</h3>
+                    <a href="index.html" class="btn-back">← Dashboard</a>
+                </div>
+                <div class="status-indicator"
+                    style="width: 10px; height: 10px; background: #4caf50; border-radius: 50%;"></div>
+            </div>
+
+            <div class="editor-content">
+                <!-- Section Selector -->
+                <div class="form-group">
+                    <label>Section đang sửa</label>
+                    <select class="form-control" id="section-select">
+                        <option value="hero">Hero (Đầu trang)</option>
+                        <option value="features" disabled>Ưu điểm (Coming soon)</option>
+                    </select>
+                </div>
+
+                <hr style="border-color:#333; margin: 1.5rem 0;">
+
+                <!-- Hero Fields -->
+                <div id="hero-fields">
+                    <div class="form-group">
+                        <label>Tiêu đề nhỏ (Badge)</label>
+                        <input type="text" class="form-control" id="badge" value="Dẫn đầu xu hướng in ấn 2026">
+                    </div>
+                    <div class="form-group">
+                        <label>Tiêu đề chính 1</label>
+                        <input type="text" class="form-control" id="title_top" value="In PET Chuyển Nhiệt">
+                    </div>
+                    <div class="form-group">
+                        <label>Tiêu đề điểm nhấn</label>
+                        <input type="text" class="form-control" id="title_highlight" value="Đẳng Cấp Local Brand">
+                    </div>
+                    <div class="form-group">
+                        <label>Mô tả</label>
+                        <textarea class="form-control"
+                            id="description">Công nghệ in siêu tốc, màu sắc rực rỡ, độ bền vĩnh cửu. Đối tác tin cậy của hơn 500+ thương hiệu thời trang Việt Nam.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Nút chính</label>
+                        <input type="text" class="form-control" id="cta_primary" value="Gọi tư vấn ngay">
+                    </div>
+                    <div class="form-group">
+                        <label>Nút phụ</label>
+                        <input type="text" class="form-control" id="cta_secondary" value="Xem bảng giá">
+                    </div>
+                </div>
+
+                <button class="btn-save" id="btn-save">Lưu thay đổi</button>
+            </div>
+        </aside>
+
+        <!-- Live Preview -->
+        <div class="editor-preview">
+            <iframe src="/" id="preview-frame"></iframe>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/supabase-client.js"></script>
+    <script>
+        const preview = document.getElementById('preview-frame');
+        const inputs = document.querySelectorAll('#hero-fields input, #hero-fields textarea');
+        const btnSave = document.getElementById('btn-save');
+
+        // Real-time Update
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                const payload = {};
+                inputs.forEach(inp => payload[inp.id] = inp.value);
+
+                // Send to React App
+                preview.contentWindow.postMessage({
+                    type: 'UPDATE_HERO',
+                    payload
+                }, '*');
+            });
+        });
+
+        // Save to Supabase (Mock functionality until credentials provided)
+        btnSave.addEventListener('click', async () => {
+            const payload = {};
+            inputs.forEach(inp => payload[inp.id] = inp.value);
+
+            btnSave.innerText = 'Đang lưu...';
+
+            // If we had credentials, we'd call: 
+            // await updatePageContent('homepage', 'hero', payload);
+
+            // Simulating save
+            setTimeout(() => {
+                btnSave.innerText = 'Đã lưu thành công!';
+                setTimeout(() => btnSave.innerText = 'Lưu thay đổi', 2000);
+            }, 800);
+        });
+    </script>
+</body>
+
+</html>
