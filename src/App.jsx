@@ -5,9 +5,12 @@ import Features from './components/Features'
 import Process from './components/Process'
 import ServiceInfo from './components/ServiceInfo'
 import ProductCatalog from './components/ProductCatalog'
+import useIntersectionObserver from './hooks/useIntersectionObserver'
 import './index.css'
 
 function App() {
+    useIntersectionObserver();
+
     return (
         <div className="app-container">
             <Navbar />
