@@ -15,7 +15,7 @@ export default defineConfig({
         blog: resolve(__dirname, 'blog.html'),
         blogDetail: resolve(__dirname, 'blog-detail.html'),
         productDetail: resolve(__dirname, 'product-detail.html'),
-        gallery: undefined, // Deleted
+
         admin: resolve(__dirname, 'admin/index.html'),
         adminLogin: resolve(__dirname, 'admin/login.html'),
         adminOrders: resolve(__dirname, 'admin/orders.html'),
