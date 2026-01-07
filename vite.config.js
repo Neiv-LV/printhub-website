@@ -18,6 +18,9 @@ export default defineConfig({
 
         admin: resolve(__dirname, 'admin/index.html'),
         adminLogin: resolve(__dirname, 'admin/login.html'),
+        adminContent: resolve(__dirname, 'admin/content.html'),
+        adminEditor: resolve(__dirname, 'admin/editor.html'),
+        adminSetup: resolve(__dirname, 'admin/setup.html'),
         adminOrders: resolve(__dirname, 'admin/orders.html'),
         adminPermissions: resolve(__dirname, 'admin/permissions.html'),
         adminPosts: resolve(__dirname, 'admin/posts.html'),
